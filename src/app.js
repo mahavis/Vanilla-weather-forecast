@@ -31,6 +31,11 @@ function formatDay(timestamp) {
 }
 
 function displayForecast(response) {
+  let sunRiseElement = document.querySelector("#🌞Rise");
+  sunRiseElement.innerHTML = response.data.current.sunrise;
+  let sunSetElement = document.querySelector("#☀️Set");
+  sunSetElement.innerHTML = response.data.current.sunset;
+
   let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
 
@@ -85,6 +90,7 @@ function showTemperature(response) {
   humidity.innerHTML = response.data.main.humidity;
   let wind = document.querySelector("#speed");
   wind.innerHTML = Math.round(response.data.wind.speed);
+
   let date = document.querySelector("#date");
   date.innerHTML = formatDate(response.data.dt * 1000);
   let iconElement = document.querySelector("#icon");
