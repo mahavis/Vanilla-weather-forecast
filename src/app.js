@@ -31,10 +31,50 @@ function formatDay(timestamp) {
 }
 
 function displayForecast(response) {
+  let date = new Date();
+  let day = date.getDate();
+  let hours = date.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  let minutes = date.getMinutes();
+  if (minutes < 10) {
+    hours = `0${minutes}`;
+  }
+  let months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
+  let month = months[date.getMonth()];
+
+  let fullYear = date.getFullYear();
+
+  let fullDate = `${month} ${day} ${fullYear}`;
+  let currentTime = `${hours}:${minutes}`;
   let sunRiseElement = document.querySelector("#🌞Rise");
   sunRiseElement.innerHTML = response.data.current.sunrise;
   let sunSetElement = document.querySelector("#☀️Set");
   sunSetElement.innerHTML = response.data.current.sunset;
+
+  console.log(currentTime);
+  console.log(fullDate);
+  console.log(date);
+  console.log(day);
+  console.log(hours);
+  console.log(minutes);
+  console.log(month);
+  console.log(fullYear);
 
   let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
